@@ -10,7 +10,7 @@ $(document).ready(function () {
         var query = $("#userSearchInput").val();
 
         $.ajax({
-            url: "http://localhost:54693/api/users/getallbyterm?query=" + query,
+            url: "http://localhost:54693/api/users/getallbytermvw?query=" + query,
             success: function (result) {
                 searchData = result;
 
