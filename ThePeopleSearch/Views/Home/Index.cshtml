@@ -3,8 +3,8 @@
 }
 
 <div class="input-group">
-    <input type="text" class="h40 form-control" placeholder="Search users">
-    <div class="input-group-append inputBtnFrame">
+    <input id="userSearchInput" type="text" class="h40 form-control" placeholder="Search users">
+    <div id="searchClickFrame" class="input-group-append inputBtnFrame">
         <input type="image" id="searchBtn" class="h40 inputBtn" src="~/Content/Images/search.png" />
     </div>
 </div>
@@ -13,4 +13,8 @@
 </div>
 <div id="userList">
 </div>
+
+<br style="clear: both;" />
+
+@Scripts.Render("~/bundles/site/index")
 

@@ -11,6 +11,10 @@ namespace ThePeopleSearch
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            // Custom JS files
+            bundles.Add(new ScriptBundle("~/bundles/site/index").Include(
+                        "~/Scripts/site/index.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
