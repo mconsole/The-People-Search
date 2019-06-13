@@ -26,5 +26,12 @@ namespace ThePeopleSearch.Data.Helpers
 
             return _conn.Query<T>(sql).ToList();
         }
+
+        public List<T>  GetAllUsersByTerm(string query)
+        {
+            string sql = "SELECT * FROM " + typeof(T).Name + " WHERE ((lastName LIKE '%@query%') OR (firstName LIKE '%@query%'))";
+
+            return _conn.Query<T>(sql, new { @query = query }).ToList();
+        }
     }
 }

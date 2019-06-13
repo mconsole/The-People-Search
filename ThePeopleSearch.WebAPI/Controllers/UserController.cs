@@ -25,5 +25,27 @@ namespace ThePeopleSearch.WebAPI.Controllers
 
             return Ok(results);
         }
+
+        [HttpGet]
+        [Route("getAllByTerm")]
+        public IHttpActionResult getAllByTerm([FromUri] string query)
+        {
+            var repo = new DapperHelper<Users>(connectionString);
+
+            var results = repo.GetAllUsersByTerm(query);
+
+            return Ok(results);
+        }
+
+        [HttpGet]
+        [Route("getAllByTermVw")]
+        public IHttpActionResult getAllByTermVw([FromUri] string query)
+        {
+            var repo = new DapperHelper<UsersVw>(connectionString);
+
+            var results = repo.GetAllUsersByTerm(query);
+
+            return Ok(results);
+        }
     }
 }

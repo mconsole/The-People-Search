@@ -17,3 +17,13 @@
     height: 75%;
     margin: auto;
 }
+
+#addUserBtn {
+    width: 20%;
+    color: white;
+}
+
+.txtWB {
+    color: white;
+    font-weight: bold;  
+}
