@@ -55,5 +55,14 @@ namespace ThePeopleSearch.Data.Helpers
 
             return x;
         }
+
+        public int LogNewError(Error error)
+        {
+            string sql = "INSERT INTO Errors (message, stackTrace, createdDtTIme) VALUES (@message, @stackTrace, @createdDtTime); SELECT CAST(SCOPE_IDENTITY() as int);";
+
+            var x = _conn.Query<int>(sql, error).Single();
+
+            return x;
+        }
     }
 }

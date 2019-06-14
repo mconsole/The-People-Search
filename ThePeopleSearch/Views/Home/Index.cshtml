@@ -36,14 +36,15 @@
                         <input required type="text" class="form-control" id="addressInput" aria-describedby="emailHelp" placeholder="Street Address">
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-6">
                             <label for="interestsInput">Interests</label>
-                            <select required multiple class="form-control" id="interestsInput">
-                            </select>
+                            <select required multiple class="form-control" id="interestsInput"></select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="ageInput">Age</label>
                             <input required type="text" class="form-control" id="ageInput" maxlength="3" placeholder="Age">
+                            <label for="inputState">Country</label>
+                            <select required id="inputCountry" class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -53,14 +54,16 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">State</label>
-                            <select required id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                            </select>
+                            <select required id="inputState" class="form-control"></select>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputZip">Zip</label>
                             <input required type="text" class="form-control" id="inputZip" maxlength="5" placeholder="Zip">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userImageUpload">User Image</label>
+                        <input type="file" class="form-control-file" id="userImageUpload">
                     </div>
                 </form>
             </div>

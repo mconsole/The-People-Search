@@ -2,6 +2,10 @@
 var _houst;
 var data;
 
+var countryChoices = [
+    { name: "United States" }
+]
+
 var usStates = [
     { name: 'ALABAMA', abbreviation: 'AL' },
     { name: 'ALASKA', abbreviation: 'AK' },
@@ -90,30 +94,24 @@ $(document).ready(function () {
         $("#interestsInput").append(option);
     }
 
+    for (var i = 0; i < countryChoices.length; i++) {
+        var option = document.createElement("option");
+        option.text = countryChoices[i].name;
+        option.value = countryChoices[i].name;
+        $("#inputCountry").append(option);
+    }
+
     //button click event for search button
     $("#searchClickFrame").click(function () {
-
-        var query = $("#userSearchInput").val();
-
-        $.ajax({
-            url: "http://localhost:54693/api/users/getallbytermvw?query=" + query,
-            success: function (result) {
-                searchData = result;
-
-                $("#userList").empty();
-
-                $.each(result, function (index, value) {
-
-                    var html = '<div class="card"><img src="Content/Images/default-user.png" alt="' + searchData[index].firstName + '" style="width:100%"><h1>' + searchData[index].firstName + ' ' + searchData[index].lastName + '</h1><p class="title">' + 'Age: ' + searchData[index].age + '</p><p>' + 'Interests: ' + searchData[index].interests.replace(',', ', ') + '</p></div>';
-
-                    $("#userList").append(html);
-                });
-            }
-        });
+        searchForUser();        
     });
 
-    
-
+    //add event for pressing enter in the user search input
+    $('#userSearchInput').keyup(function (e) {
+        if (e.keyCode == 13) {
+            searchForUser();
+        }
+    });
 
 
 
@@ -128,10 +126,33 @@ $("#addNewUserBtn").click(function () {
     $("#addressInput").val('');
     $("#inputCity").val('');
     $("#inputState").prop('selectedIndex', -1);
+    $("#inputCountry").prop('selectedIndex', -1);
     $("#interestsInput").prop('selectedIndex', -1);
     $("#inputZip").val('');
     $("#ageInput").val('');
 });
+
+//searches for users that match the search text or part of it
+function searchForUser() {
+    var query = $("#userSearchInput").val();
+
+    $.ajax({
+        url: "http://localhost:54693/api/users/getallbytermvw?query=" + query,
+        success: function (result) {
+            searchData = result;
+            $("#userSearchInput").val('');
+
+            $("#userList").empty();
+
+            $.each(result, function (index, value) {
+
+                var html = '<div class="card"><img src="Content/Images/default-user.png" alt="' + searchData[index].firstName + '" style="width:100%"><h1>' + searchData[index].firstName + ' ' + searchData[index].lastName + '</h1><p class="title">' + 'Age: ' + searchData[index].age + '</p><p class="title">' + searchData[index].streetAddr + ", " + searchData[index].cityName + ", " + searchData[index].statename + " " + searchData[index].zipCode + '</p><p>' + 'Interests: ' + searchData[index].interests.replace(',', ', ') + '</p></div>';
+
+                $("#userList").append(html);
+            });
+        }
+    });
+}
 
 //ajax POST event for submitting new users and their location
 function submitNewUserData() {
@@ -141,7 +162,7 @@ function submitNewUserData() {
             cityName: $("#inputCity").val(),
             stateName: $("#inputState option:selected").text(),
             zipCode: $("#inputZip").val(),
-            countryName: $("#inputState option:selected").text(),
+            countryName: $("#inputCountry option:selected").text(),
             createdDtTime: new Date().toLocaleString()
         }
 
@@ -172,13 +193,15 @@ function submitUserInfo(data, status) {
         }
     }
 
+    var imageFile = $("#userImageUpload").prop("files")[0];
+
     var userData = {
         firstName: $("#firstNameInput").val(),
         lastName: $("#lastNameInput").val(),
         age: $("#ageInput").val(),
         addressId: data,
         interests: interestString,
-        userImage: "",
+        userImage: imageFile.name,
         createdDtTime: new Date().toLocaleString()
     }
 
