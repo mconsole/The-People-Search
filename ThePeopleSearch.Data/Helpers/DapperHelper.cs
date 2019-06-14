@@ -58,7 +58,7 @@ namespace ThePeopleSearch.Data.Helpers
 
         public int LogNewError(Error error)
         {
-            string sql = "INSERT INTO Errors (message, stackTrace, createdDtTIme) VALUES (@message, @stackTrace, @createdDtTime); SELECT CAST(SCOPE_IDENTITY() as int);";
+            string sql = "INSERT INTO Errors (application, message, stackTrace, createdDtTIme) VALUES (@application, @message, @stackTrace, @createdDtTime); SELECT CAST(SCOPE_IDENTITY() as int);";
 
             var x = _conn.Query<int>(sql, error).Single();
 

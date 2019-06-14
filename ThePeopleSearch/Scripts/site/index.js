@@ -1,6 +1,8 @@
 ﻿var searchData;
 var _houst;
 var data;
+var timer;
+var timeout;
 
 var countryChoices = [
     { name: "United States" }
@@ -87,6 +89,7 @@ $(document).ready(function () {
         $("#inputState").append(option);
     }
 
+    //populate options for interests multi select
     for (var i = 0; i < interestChoices.length; i++) {
         var option = document.createElement("option");
         option.text = interestChoices[i].name;
@@ -94,6 +97,7 @@ $(document).ready(function () {
         $("#interestsInput").append(option);
     }
 
+    //populate dropdown for country select
     for (var i = 0; i < countryChoices.length; i++) {
         var option = document.createElement("option");
         option.text = countryChoices[i].name;
@@ -103,13 +107,33 @@ $(document).ready(function () {
 
     //button click event for search button
     $("#searchClickFrame").click(function () {
-        searchForUser();        
+        //random number between 0 and 9
+        var num = Math.floor(Math.random() * (5 - 0));
+
+        //timer variable
+        timer = 0;
+
+        //function running every second to simulate a timer, at 3 seconds it cancels all processes for searching and puts up an alert
+        timeout = setInterval(function () { if (timer < 3) { timer += 1 } else { clearInterval(timeout); clearTimeout(searchDelay); alert("Failed to load search results. Please try again later."); } }, 1000);
+
+        //random number simulates lag / slow search from time to time
+        var searchDelay = setTimeout(searchForUser, num * 1000);        
     });
 
     //add event for pressing enter in the user search input
     $('#userSearchInput').keyup(function (e) {
         if (e.keyCode == 13) {
-            searchForUser();
+            //random number between 0 and 9
+            var num = Math.floor(Math.random() * (5 - 0));
+
+            //timer variable
+            timer = 0;
+
+            //function running every second to simulate a timer, at 3 seconds it cancels all processes for searching and puts up an alert
+            timeout = setInterval(function () { if (timer < 3) { timer += 1 } else { clearInterval(timeout); clearInterval(searchDelay); alert("Failed to load search results. Please try again later."); } }, 1000);
+
+            //random number simulates lag / slow search from time to time
+            var searchDelay = setTimeout(searchForUser, num * 1000);   
         }
     });
 
@@ -134,6 +158,8 @@ $("#addNewUserBtn").click(function () {
 
 //searches for users that match the search text or part of it
 function searchForUser() {
+    clearInterval(timeout);
+
     var query = $("#userSearchInput").val();
 
     $.ajax({
