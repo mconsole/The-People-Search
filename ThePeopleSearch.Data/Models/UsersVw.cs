@@ -11,6 +11,7 @@ namespace ThePeopleSearch.Data.Models
         public int userId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
+        public int age { get; set; }
         public string interests { get; set; }
         public string userImage { get; set; }
         public string streetAddr { get; set; }
