@@ -33,7 +33,7 @@ namespace ThePeopleSearch
                 }
                 else
                 {                    
-                    eh.Log(ex.Message, ex.StackTrace, DateTime.Now);
+                    eh.Log("The People Search MVC", ex.Message, ex.StackTrace, DateTime.Now);
                 }
 
             }

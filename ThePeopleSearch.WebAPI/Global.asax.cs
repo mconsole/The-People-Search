@@ -35,7 +35,7 @@ namespace ThePeopleSearch.WebAPI
                 }
                 else
                 {
-                    eh.Log(ex.Message, ex.StackTrace, DateTime.Now);
+                    eh.Log("The People Search API", ex.Message, ex.StackTrace, DateTime.Now);
                 }
 
             }

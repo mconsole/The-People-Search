@@ -27,7 +27,7 @@ namespace ThePeopleSearch.Controllers
 
             //Log the error!!
             ErrorHelper eh = new ErrorHelper();
-            eh.Log(filterContext.Exception.Message, filterContext.Exception.StackTrace, DateTime.Now);
+            eh.Log("The People Search MVC", filterContext.Exception.Message, filterContext.Exception.StackTrace, DateTime.Now);
 
             //Redirect or return a view, but not both.
             filterContext.Result = RedirectToAction("Index", "Home");

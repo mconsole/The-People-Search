@@ -12,13 +12,14 @@ namespace ThePeopleSearch.Data.Helpers
 {
     public class ErrorHelper
     {
-        public void Log(string message, string stackTrace, DateTime datetime)
+        public void Log(string application, string message, string stackTrace, DateTime datetime)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
                     Error er = new Error();
+                    er.application = application;
                     er.message = message;
                     er.stackTrace = stackTrace;
                     er.createdDtTime = datetime;
