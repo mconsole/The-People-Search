@@ -24,5 +24,16 @@ namespace ThePeopleSearch.WebAPI.Controllers
 
             return Ok(results);
         }
+
+        [HttpPost]
+        [Route("addNewLocation")]
+        public IHttpActionResult addNewLocation(Locations location)
+        {
+            var repo = new DapperHelper<UsersVw>(connectionString);
+
+            var results = repo.InsertNewLocation(location);
+
+            return Ok(results);
+        }
     }
 }

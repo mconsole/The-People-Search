@@ -1,5 +1,6 @@
 ﻿var searchData;
 var _houst;
+var data;
 
 var usStates = [
     { name: 'ALABAMA', abbreviation: 'AL' },
@@ -63,6 +64,14 @@ var usStates = [
     { name: 'WYOMING', abbreviation: 'WY' }
 ];
 
+var interestChoices = [
+    { name: 'Sports' },
+    { name: 'Cooking' },
+    { name: 'Reading' },
+    { name: 'Videogames' },
+    { name: 'Art' }
+];
+
 $(document).ready(function () {
     "use strict"
 
@@ -74,6 +83,12 @@ $(document).ready(function () {
         $("#inputState").append(option);
     }
 
+    for (var i = 0; i < interestChoices.length; i++) {
+        var option = document.createElement("option");
+        option.text = interestChoices[i].name;
+        option.value = interestChoices[i].name;
+        $("#interestsInput").append(option);
+    }
 
     //button click event for search button
     $("#searchClickFrame").click(function () {
@@ -97,16 +112,7 @@ $(document).ready(function () {
         });
     });
 
-    //event to clear form inputs on add user button click
-    $("#addNewUserBtn").click(function () {
-        $("#firstNameInput").val('');
-        $("#lastNameInput").val('');
-        $("#addressInput").val('');
-        $("#inputCity").val('');
-        $("#inputState").prop('selectedIndex', 0);
-        $("#inputZip").val('');
-    });
-
+    
 
 
 
@@ -114,3 +120,76 @@ $(document).ready(function () {
 
 
 });
+
+//event to clear form inputs on add user button click
+$("#addNewUserBtn").click(function () {
+    $("#firstNameInput").val('');
+    $("#lastNameInput").val('');
+    $("#addressInput").val('');
+    $("#inputCity").val('');
+    $("#inputState").prop('selectedIndex', -1);
+    $("#interestsInput").prop('selectedIndex', -1);
+    $("#inputZip").val('');
+    $("#ageInput").val('');
+});
+
+//ajax POST event for submitting new users and their location
+function submitNewUserData() {
+    if ($("#firstNameInput").val() && $("#lastNameInput").val() && $("#addressInput").val() && $("#inputCity").val() && $("#inputZip").val() && $("#ageInput").val()) {
+        data = {
+            streetAddr: $("#addressInput").val(),
+            cityName: $("#inputCity").val(),
+            stateName: $("#inputState option:selected").text(),
+            zipCode: $("#inputZip").val(),
+            countryName: $("#inputState option:selected").text(),
+            createdDtTime: new Date().toLocaleString()
+        }
+
+        submitLocationInfo(data);
+    }  
+}
+
+function submitLocationInfo(locationData) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:54693/api/locations/addnewlocation",
+        data: locationData,
+        success: function (result) {
+            submitUserInfo(result, status);
+        }
+    });
+}
+
+function submitUserInfo(data, status) {
+    var interests = $("#interestsInput").val();
+    var interestString = "";
+
+    for (var i = 0; i < interests.length; i++) {
+        if (i == 0) {
+            interestString += interests[i];
+        } else {
+            interestString += ", " + interests[i];
+        }
+    }
+
+    var userData = {
+        firstName: $("#firstNameInput").val(),
+        lastName: $("#lastNameInput").val(),
+        age: $("#ageInput").val(),
+        addressId: data,
+        interests: interestString,
+        userImage: "",
+        createdDtTime: new Date().toLocaleString()
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:54693/api/users/addnewuser",
+        data: userData,
+        success: function () {
+            alert("User Added Successfully!");
+
+            $('#addUserForm').modal('hide');
+        }
+    });
+}

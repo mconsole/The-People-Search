@@ -47,5 +47,16 @@ namespace ThePeopleSearch.WebAPI.Controllers
 
             return Ok(results);
         }
+
+        [HttpPost]
+        [Route("addNewUser")]
+        public IHttpActionResult addNewUser(Users user)
+        {
+            var repo = new DapperHelper<UsersVw>(connectionString);
+
+            var results = repo.InsertNewUser(user);
+
+            return Ok(results);
+        }
     }
 }
