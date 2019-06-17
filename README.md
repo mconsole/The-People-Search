@@ -8,6 +8,9 @@ This application was built simply as a demo / test for the purposes of displayin
 Given that this is a test project, the current "installation" practices are to open the .sln and run the project via Visual Studio and localhost. The project has already been configured to startup both the API and MVC applications at the same time as well as build all required dependencies. Furthermore, the database is currently hosted in a free tier AWS account so no database installation or script running is required (db connection is already configured in the Web.Config file for the API).
 
 ## Usage
+Usage of the application is simple and revolves around two main pieces of functionality. The first is the search bar which takes in a text search and matches it against the firstName and lastName columns in the database. If any part of a user's first or last name contains the search string, then that user gets returned and displayed in the UI. If the search string is empty then all users in the database are returned.
+
+The second piece of functionality is adding a new uers. Next to the search bar is a button for adding a user and displays a bootstrap modal containing a form. Upon hitting the add button in this form (once all required fields are filled out) the user is written to the database and is immediately available for searching.
 
 ## Important Information
 Here is a list of important notes to know about the project with regards to setup and usage:
@@ -15,7 +18,7 @@ Here is a list of important notes to know about the project with regards to setu
 	- If the randomly generated delay is greater than 3 seconds then the search task is canceled and a message appears for the user
 	
 - An endpoint in the MVC project was created at /home/error for the purposes of testing error logging to the database
-	- Upon navigation to this endpoint a test error is automatically thrown and logged to the database why redirecting a user to an error page on the UI
+	- Upon navigation to this endpoint a test error is automatically thrown and logged to the database while redirecting a user to an error page on the UI
 	
 
 ## Authors
