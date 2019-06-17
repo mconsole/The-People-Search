@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,6 +38,24 @@ namespace ThePeopleSearch.Controllers
 
             //Redirect or return a view, but not both.
             filterContext.Result = RedirectToAction("ErrorPage", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult Upload()
+        {
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/User_Images/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

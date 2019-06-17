@@ -166,7 +166,7 @@ function searchForUser() {
 
             $.each(result, function (index, value) {
 
-                var html = '<div class="card mt2 col-md-4 col-sm-12"><img src="../Content/Images/default-user.png" alt="' + searchData[index].firstName + '" style="width:100%"><h1>' + searchData[index].firstName + ' ' + searchData[index].lastName + '</h1><p class="title">' + 'Age: ' + searchData[index].age + '</p><p class="title">' + searchData[index].streetAddr + ", " + searchData[index].cityName + ", " + searchData[index].statename + " " + searchData[index].zipCode + '</p><p>' + 'Interests: ' + searchData[index].interests.replace(',', ', ') + '</p></div>';
+                var html = '<div class="card mt2 col-md-4 col-sm-12"><img class="cardImg" src="User_Images/' + searchData[index].userImage + '"' + searchData[index].firstName + '" style="width:100%; height: 278px;"><h1>' + searchData[index].firstName + ' ' + searchData[index].lastName + '</h1><p class="title">' + 'Age: ' + searchData[index].age + '</p><p class="title">' + searchData[index].streetAddr + ", " + searchData[index].cityName + ", " + searchData[index].statename + " " + searchData[index].zipCode + '</p><p>' + 'Interests: ' + searchData[index].interests.replace(',', ', ') + '</p></div>';
 
                 $("#userList").append(html);
             });
@@ -217,15 +217,32 @@ function submitUserInfo(data, status) {
             interestString += ", " + interests[i];
         }
     }
-
+    
+    //save user image to network location
     var imageFile;
     var images = $("#userImageUpload").prop("files");
+
+    var $formData = new FormData();
+
     if (images.length > 0) {
         imageFile = images[0].name;
-    } else {
-        imageFile = "";
-    }
 
+        $formData.append(images[0].name, images[0]);
+
+        $.ajax({
+            url: '/home/upload',
+            type: 'POST',
+            data: $formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function ($data) {
+
+            }
+        });
+    } else {
+        imageFile = "default-user.png";
+    }    
 
     var userData = {
         firstName: $("#firstNameInput").val(),
