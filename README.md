@@ -1,6 +1,4 @@
 # The-People-Search
-
-## Description
 ASP.NET MVC application for searching user information in a database or adding a new user. 
 
 ## Project Status
