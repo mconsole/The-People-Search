@@ -1,10 +1,39 @@
 ﻿.main {
     width: 50%;
-    margin: 50px auto;
+    margin: 50px auto;    
 }
 
-.inputBtnFrame {
-    background-color: rebeccapurple;
+body {
+    background-color: royalblue;
+}
+
+.inputBtnFrame {    
+    padding: 1%;
+}
+
+#titleFrame {
+    text-align: center;
+    width: 100%;
+}
+
+#title {
+    color: white;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+#searchClickFrame {
+    background-color: white;
+}
+
+#addNewUserBtn {
+    border-radius: 0 5px 5px 0;
+    background-color: slategray
+}
+
+.container {
+    border-radius: 5px;
 }
 
 .h40 {
@@ -13,14 +42,24 @@
 }
 
 .inputBtn {
-    width: 50%;
-    height: 50%;
     margin: auto;
 }
 
-#addUserBtn {
-    width: 20%;
-    color: white;
+.mt5 {
+    margin-top: 5%;
+}
+
+.mt10 {
+    margin-top: 10%;
+}
+
+.mt2 {
+    margin-top: 2%;
+}
+
+#userSearchInput {
+    border-radius: 5px 0 0 5px;
+    border: 0;
 }
 
 .txtWB {
@@ -31,10 +70,9 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
-    margin: 20px;
     text-align: center;
-    float: left;
     padding: 10px;
+    margin: 2% auto;
 }
 
 .title {

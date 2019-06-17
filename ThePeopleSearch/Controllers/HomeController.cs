@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ThePeopleSearch.Data.Helpers;
+using ThePeopleSearch.ErrorLogging;
 
 namespace ThePeopleSearch.Controllers
 {
@@ -12,13 +13,18 @@ namespace ThePeopleSearch.Controllers
     {
         public ActionResult Index()
         {
-
+            ViewBag.Host = ConfigurationManager.AppSettings["WebAPIUrl"];
             return View();
         }
 
         public ActionResult Error()
         {
             throw new Exception("Test Error");
+        }
+
+        public ActionResult ErrorPage()
+        {
+            return View("~/Views/Shared/Error.cshtml");
         }
 
         protected override void OnException(ExceptionContext filterContext)
@@ -30,7 +36,7 @@ namespace ThePeopleSearch.Controllers
             eh.Log("The People Search MVC", filterContext.Exception.Message, filterContext.Exception.StackTrace, DateTime.Now);
 
             //Redirect or return a view, but not both.
-            filterContext.Result = RedirectToAction("Index", "Home");
+            filterContext.Result = RedirectToAction("ErrorPage", "Home");
         }
     }
 }

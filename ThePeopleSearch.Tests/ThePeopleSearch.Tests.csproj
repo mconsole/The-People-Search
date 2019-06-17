@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="ErrorHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -99,6 +100,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ThePeopleSearch.Data\ThePeopleSearch.Data.csproj">
+      <Project>{ED3761E3-4EB2-4C5F-8732-CCA827414FDE}</Project>
+      <Name>ThePeopleSearch.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThePeopleSearch.ErrorLogging\ThePeopleSearch.ErrorLogging.csproj">
+      <Project>{609663e8-a612-4f8c-8149-e7b6a0920516}</Project>
+      <Name>ThePeopleSearch.ErrorLogging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThePeopleSearch\ThePeopleSearch.csproj">
       <Project>{D03EAC22-9C21-4844-B03F-734502B639F7}</Project>
       <Name>ThePeopleSearch</Name>

@@ -107,6 +107,22 @@ $(document).ready(function () {
 
     //button click event for search button
     $("#searchClickFrame").click(function () {
+        $("#userList").empty();
+        $("#userList").html("&nbsp;");
+
+        $('<div class=loadingDiv>loading...</div>').prependTo("#userList"); 
+
+        setTestDelay();      
+    });
+
+    //add event for pressing enter in the user search input
+    $('#userSearchInput').keyup(function (e) {
+        if (e.keyCode == 13) {
+            setTestDelay();
+        }
+    });
+
+    function setTestDelay() {
         //random number between 0 and 9
         var num = Math.floor(Math.random() * (5 - 0));
 
@@ -114,33 +130,11 @@ $(document).ready(function () {
         timer = 0;
 
         //function running every second to simulate a timer, at 3 seconds it cancels all processes for searching and puts up an alert
-        timeout = setInterval(function () { if (timer < 3) { timer += 1 } else { clearInterval(timeout); clearTimeout(searchDelay); alert("Failed to load search results. Please try again later."); } }, 1000);
+        timeout = setInterval(function () { if (timer < 3) { timer += 1 } else { clearInterval(timeout); clearInterval(searchDelay); $(".loadingDiv").remove(); alert("Failed to load search results. Please try again later."); } }, 1000);
 
         //random number simulates lag / slow search from time to time
-        var searchDelay = setTimeout(searchForUser, num * 1000);        
-    });
-
-    //add event for pressing enter in the user search input
-    $('#userSearchInput').keyup(function (e) {
-        if (e.keyCode == 13) {
-            //random number between 0 and 9
-            var num = Math.floor(Math.random() * (5 - 0));
-
-            //timer variable
-            timer = 0;
-
-            //function running every second to simulate a timer, at 3 seconds it cancels all processes for searching and puts up an alert
-            timeout = setInterval(function () { if (timer < 3) { timer += 1 } else { clearInterval(timeout); clearInterval(searchDelay); alert("Failed to load search results. Please try again later."); } }, 1000);
-
-            //random number simulates lag / slow search from time to time
-            var searchDelay = setTimeout(searchForUser, num * 1000);   
-        }
-    });
-
-
-
-
-
+        var searchDelay = setTimeout(searchForUser, num * 1000);   
+    }
 });
 
 //event to clear form inputs on add user button click
@@ -163,16 +157,16 @@ function searchForUser() {
     var query = $("#userSearchInput").val();
 
     $.ajax({
-        url: "http://localhost:54693/api/users/getallbytermvw?query=" + query,
+        url: _host + "/api/users/getallbytermvw?query=" + query,
         success: function (result) {
             searchData = result;
             $("#userSearchInput").val('');
 
-            $("#userList").empty();
+            $(".loadingDiv").remove();
 
             $.each(result, function (index, value) {
 
-                var html = '<div class="card"><img src="Content/Images/default-user.png" alt="' + searchData[index].firstName + '" style="width:100%"><h1>' + searchData[index].firstName + ' ' + searchData[index].lastName + '</h1><p class="title">' + 'Age: ' + searchData[index].age + '</p><p class="title">' + searchData[index].streetAddr + ", " + searchData[index].cityName + ", " + searchData[index].statename + " " + searchData[index].zipCode + '</p><p>' + 'Interests: ' + searchData[index].interests.replace(',', ', ') + '</p></div>';
+                var html = '<div class="card mt2 col-md-4 col-sm-12"><img src="../Content/Images/default-user.png" alt="' + searchData[index].firstName + '" style="width:100%"><h1>' + searchData[index].firstName + ' ' + searchData[index].lastName + '</h1><p class="title">' + 'Age: ' + searchData[index].age + '</p><p class="title">' + searchData[index].streetAddr + ", " + searchData[index].cityName + ", " + searchData[index].statename + " " + searchData[index].zipCode + '</p><p>' + 'Interests: ' + searchData[index].interests.replace(',', ', ') + '</p></div>';
 
                 $("#userList").append(html);
             });
@@ -193,13 +187,17 @@ function submitNewUserData() {
         }
 
         submitLocationInfo(data);
-    }  
+    }
+    else {
+        alert("Please fill out all required (*) fields.")
+    }
 }
 
+//ajax call for location info insert which calls the insert user info function upon successful completion
 function submitLocationInfo(locationData) {
     $.ajax({
         type: "POST",
-        url: "http://localhost:54693/api/locations/addnewlocation",
+        url: _host + "/api/locations/addnewlocation",
         data: locationData,
         success: function (result) {
             submitUserInfo(result, status);
@@ -207,6 +205,7 @@ function submitLocationInfo(locationData) {
     });
 }
 
+//function to insert user info into the database
 function submitUserInfo(data, status) {
     var interests = $("#interestsInput").val();
     var interestString = "";
@@ -219,7 +218,14 @@ function submitUserInfo(data, status) {
         }
     }
 
-    var imageFile = $("#userImageUpload").prop("files")[0];
+    var imageFile;
+    var images = $("#userImageUpload").prop("files");
+    if (images.length > 0) {
+        imageFile = images[0].name;
+    } else {
+        imageFile = "";
+    }
+
 
     var userData = {
         firstName: $("#firstNameInput").val(),
@@ -227,13 +233,13 @@ function submitUserInfo(data, status) {
         age: $("#ageInput").val(),
         addressId: data,
         interests: interestString,
-        userImage: imageFile.name,
+        userImage: imageFile,
         createdDtTime: new Date().toLocaleString()
     }
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:54693/api/users/addnewuser",
+        url: _host + "/api/users/addnewuser",
         data: userData,
         success: function () {
             alert("User Added Successfully!");

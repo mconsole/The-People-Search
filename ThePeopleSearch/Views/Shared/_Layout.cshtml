@@ -8,20 +8,15 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @section Scripts {
+        <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.476.0.min.js"></script>   
+    }
 </head>
     <body>
-        <!-- #region Navigation Bar-->
-        <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">The People Search</span>
-        </nav>
         <!-- end Navigation Bar-->
         <!-- #region Footer -->
         <div class="container body-content">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - The People Search</p>
-            </footer>
         </div>
         <!-- end Footer -->
 

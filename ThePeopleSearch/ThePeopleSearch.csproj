@@ -162,6 +162,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\addUser.png" />
     <Content Include="Content\Images\default-user.png" />
     <Content Include="Content\Images\search.png" />
     <Content Include="favicon.ico" />
@@ -253,6 +254,10 @@
     <ProjectReference Include="..\ThePeopleSearch.Data\ThePeopleSearch.Data.csproj">
       <Project>{ed3761e3-4eb2-4c5f-8732-cca827414fde}</Project>
       <Name>ThePeopleSearch.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThePeopleSearch.ErrorLogging\ThePeopleSearch.ErrorLogging.csproj">
+      <Project>{609663e8-a612-4f8c-8149-e7b6a0920516}</Project>
+      <Name>ThePeopleSearch.ErrorLogging</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

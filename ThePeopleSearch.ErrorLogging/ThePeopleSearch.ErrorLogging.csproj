@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ED3761E3-4EB2-4C5F-8732-CCA827414FDE}</ProjectGuid>
+    <ProjectGuid>{609663E8-A612-4F8C-8149-E7B6A0920516}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ThePeopleSearch.Data</RootNamespace>
-    <AssemblyName>ThePeopleSearch.Data</AssemblyName>
+    <RootNamespace>ThePeopleSearch.ErrorLogging</RootNamespace>
+    <AssemblyName>ThePeopleSearch.ErrorLogging</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -48,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\DapperHelper.cs" />
-    <Compile Include="Models\Error.cs" />
-    <Compile Include="Models\Locations.cs" />
-    <Compile Include="Models\Users.cs" />
-    <Compile Include="Models\UsersVw.cs" />
+    <Compile Include="ErrorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThePeopleSearch.Data\ThePeopleSearch.Data.csproj">
+      <Project>{ed3761e3-4eb2-4c5f-8732-cca827414fde}</Project>
+      <Name>ThePeopleSearch.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

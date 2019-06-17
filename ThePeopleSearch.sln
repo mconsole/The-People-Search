@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePeopleSearch.WebAPI", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePeopleSearch.Data", "ThePeopleSearch.Data\ThePeopleSearch.Data.csproj", "{ED3761E3-4EB2-4C5F-8732-CCA827414FDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePeopleSearch.ErrorLogging", "ThePeopleSearch.ErrorLogging\ThePeopleSearch.ErrorLogging.csproj", "{609663E8-A612-4F8C-8149-E7B6A0920516}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{ED3761E3-4EB2-4C5F-8732-CCA827414FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED3761E3-4EB2-4C5F-8732-CCA827414FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED3761E3-4EB2-4C5F-8732-CCA827414FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{609663E8-A612-4F8C-8149-E7B6A0920516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{609663E8-A612-4F8C-8149-E7B6A0920516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{609663E8-A612-4F8C-8149-E7B6A0920516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{609663E8-A612-4F8C-8149-E7B6A0920516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
