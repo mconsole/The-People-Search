@@ -2,7 +2,7 @@
 ASP.NET MVC application for searching user information in a database or adding a new user. The applications makes use of the Microsoft stack using an MVC front end, an ASP.NET Web API and a MS SQL database. The project also makes use of services and tools such as Dapper (ORM), Bootstrap 4 and jQuery (UI) and Amazon Web Services (RDS). 
 
 ## Project Status
-This application was build simply as a demo / test for the purposes of displaying experience with full stack development on the Microsoft stack. Due to this, the project will not be hosted / put into a production state at this time.
+This application was built simply as a demo / test for the purposes of displaying experience with full stack development on the Microsoft stack. Due to this, the project will not be hosted / put into a production state at this time.
 
 ## Installation
 Given that this is a test project, the current "installation" practices are to open the .sln and run the project via Visual Studio and localhost. The project has already been configured to startup both the API and MVC applications at the same time as well as build all required dependencies. Furthermore, the database is currently hosted in a free tier AWS account so no database installation or script running is required (db connection is already configured in the Web.Config file for the API).
