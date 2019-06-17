@@ -1,5 +1,5 @@
 # The-People-Search
-ASP.NET MVC application for searching user information in a database or adding a new user. 
+ASP.NET MVC application for searching user information in a database or adding a new user. The applications makes use of the Microsoft stack using an MVC front end, an ASP.NET Web API and a MS SQL database. The project also makes use of services and tools such as Dapper (ORM), Bootstrap 4 and jQuery (UI) and Amazon Web Services (RDS). 
 
 ## Project Status
 This application was build simply as a demo / test for the purposes of displaying experience with full stack development on the Microsoft stack. Due to this, the project will not be hosted / put into a production state at this time.
