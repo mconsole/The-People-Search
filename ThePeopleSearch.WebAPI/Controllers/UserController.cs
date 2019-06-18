@@ -41,9 +41,17 @@ namespace ThePeopleSearch.WebAPI.Controllers
         [Route("getAllByTermVw")]
         public IHttpActionResult getAllByTermVw([FromUri] string query)
         {
-            var repo = new DapperHelper<UsersVw>(connectionString);
+            List<UsersVw> results;
 
-            var results = repo.GetAllUsersByTerm(query);
+            if (String.IsNullOrWhiteSpace(query))
+            {
+                results = new List<UsersVw>();
+            } else
+            {
+                var repo = new DapperHelper<UsersVw>(connectionString);
+
+                results = repo.GetAllUsersByTerm(query);
+            }
 
             return Ok(results);
         }

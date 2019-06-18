@@ -201,6 +201,9 @@ function submitLocationInfo(locationData) {
         data: locationData,
         success: function (result) {
             submitUserInfo(result, status);
+        },
+        error: function () {
+            alert("Failed to add new user.")
         }
     });
 }
@@ -238,6 +241,9 @@ function submitUserInfo(data, status) {
             processData: false,
             success: function ($data) {
 
+            },
+            error: function (){
+
             }
         });
     } else {
@@ -262,6 +268,9 @@ function submitUserInfo(data, status) {
             alert("User Added Successfully!");
 
             $('#addUserForm').modal('hide');
+        },
+        error: function () {
+            alert("Failed to add new user.")
         }
     });
 }

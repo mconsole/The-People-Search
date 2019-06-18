@@ -18,7 +18,7 @@ namespace ThePeopleSearch.ErrorLogging
             {
                 if (datetime > DateTime.Now)
                 {
-                    throw new ArgumentOutOfRangeException("datetime", "datetime cannot be in the future.");
+                    throw new System.ArgumentOutOfRangeException();
                 }
                 else
                 {

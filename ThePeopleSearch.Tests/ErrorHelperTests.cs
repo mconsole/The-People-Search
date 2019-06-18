@@ -13,18 +13,25 @@ namespace ThePeopleSearch.Tests
         public void testLogWithFutureDateTime()
         {
 
-            //arrange
-            var futureDate = DateTime.Now.AddDays(7);
-            var eh = new ErrorHelper();
+            try
+            {
+                //arrange
+                var futureDate = DateTime.Now.AddDays(7);
+                var eh = new ErrorHelper();
 
-            string application = "Unit Tests";
-            string message = "Unit Test Error";
-            string stackTrace = "Test stack trace";
+                string application = "Unit Tests";
+                string message = "Unit Test Error";
+                string stackTrace = "Test stack trace";
 
+                //act
+                eh.Log(application, message, stackTrace, futureDate);
 
-            //act
+                //assert
+                Assert.Fail();
+            } catch
+            {
 
-            //assert
+            }
         }
     }
 }
