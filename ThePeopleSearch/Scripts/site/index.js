@@ -107,11 +107,6 @@ $(document).ready(function () {
 
     //button click event for search button
     $("#searchClickFrame").click(function () {
-        $("#userList").empty();
-        $("#userList").html("&nbsp;");
-
-        $('<div class=loadingDiv>loading...</div>').prependTo("#userList"); 
-
         setTestDelay();      
     });
 
@@ -123,6 +118,11 @@ $(document).ready(function () {
     });
 
     function setTestDelay() {
+        $("#userList").empty();
+        $("#userList").html("&nbsp;");
+
+        $('<div class=loadingDiv>loading...</div>').prependTo("#userList");
+
         //random number between 0 and 9
         var num = Math.floor(Math.random() * (5 - 0));
 
