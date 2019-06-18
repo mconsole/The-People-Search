@@ -23,7 +23,7 @@ Here is a list of important notes to know about the project with regards to setu
 	- Upon navigation to this endpoint a test error is automatically thrown and logged to the database while redirecting a user to an error page on the UI
 
 ## Screenshots
-![TestUsers.png]
+![TestUsers.png](TestUsers.png)
 
 ## Authors
 Mitchell Console
