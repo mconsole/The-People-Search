@@ -30,9 +30,17 @@ namespace ThePeopleSearch.WebAPI.Controllers
         [Route("getAllByTerm")]
         public IHttpActionResult getAllByTerm([FromUri] string query)
         {
-            var repo = new DapperHelper<Users>(connectionString);
+            List<Users> results;
 
-            var results = repo.GetAllUsersByTerm(query);
+            if (String.IsNullOrWhiteSpace(query))
+            {
+                results = new List<Users>();
+            } else
+            {
+                var repo = new DapperHelper<Users>(connectionString);
+
+                results = repo.GetAllUsersByTerm(query);
+            }
 
             return Ok(results);
         }
@@ -60,11 +68,17 @@ namespace ThePeopleSearch.WebAPI.Controllers
         [Route("addNewUser")]
         public IHttpActionResult addNewUser(Users user)
         {
-            var repo = new DapperHelper<UsersVw>(connectionString);
+            if (user == null)
+            {
+                throw new NullReferenceException();
+            } else
+            {
+                var repo = new DapperHelper<UsersVw>(connectionString);
 
-            var results = repo.InsertNewUser(user);
+                var results = repo.InsertNewUser(user);
 
-            return Ok(results);
+                return Ok(results);
+            }
         }
     }
 }

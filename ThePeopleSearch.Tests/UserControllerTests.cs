@@ -28,5 +28,40 @@ namespace ThePeopleSearch.Tests
             //assert
             Assert.AreEqual(0, count);
         }
+
+        [TestMethod]
+        public void testgetAllByTermWithEmptyQuery()
+        {
+            //arrange
+            var uc = new UserController();
+
+            //act
+            var results = uc.getAllByTerm(String.Empty);
+            var data = results as OkNegotiatedContentResult<List<Users>>;
+            var count = data.Content.Count;
+
+            //assert
+            Assert.AreEqual(0, count);
+        }
+
+        [TestMethod]
+        public void testAddNewUserWithNullUser()
+        {
+            try
+            {
+                //arrange
+                var uc = new UserController();
+
+                //act
+                uc.addNewUser(null);
+
+                //assert
+                Assert.Fail();
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
